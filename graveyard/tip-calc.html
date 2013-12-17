@@ -1,0 +1,27 @@
+<html>
+<head>
+<script type="text/javascript" src="http://static.firebase.com/v0/firebase.js"></script>
+</head>
+<body>
+<script>
+// Calcuate average of tips
+function SumTipPrice() {
+	var tipSum = 0;
+	var tipTotal = 0;
+	var TipList = new Firebase('https://cabletipster.firebaseio.com/tips/');
+	TipList.once('value', function(snap) {
+		var TipVal = snap.val();
+		console.log(TipVal);	
+		for (var key in TipVal) {
+			var obj = TipVal[key];
+			tipSum += obj.priceMonthly;
+			tipTotal += 1;
+			var tipAverage = tipSum / tipTotal;
+			console.log(tipAverage);
+		}
+	})
+};
+SumTipPrice();
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.landingImage #backdrop{background-image:url("../img/cabletipster_landing_970.jpg");width:100%;display:inline-block;vertical-align:middle;font:0/0 serif;text-shadow:none;color:transparent;background-size:100%;background-position:50% 50%;background-repeat:no-repeat}
+.landingImage #backdrop .inner{padding-top:42.55%;display:block;height:0}
+.landingImage #landingTagline .column_12 {
+	position:absolute;
+	padding-top:1em;
+	color: white;
+	width: 100% !important;
+	margin: 0px;
+}
+#landingText1 {
+	font-weight: 700;
+	font-size: 4em;
+}
+.landingImage #landingForm {
+	position:absolute;
+	padding-top:14em;
+	width: 100% !important;
+}
+
+.landingImage #landingForm input{
+	border: 0px;
+}
+
+@media only screen and (max-width:320px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_290.jpg");background-position:50% 0}.landingImage #backdrop .inner{padding-top:165.63%;display:block;height:0}.landingImage #landingForm {padding-top:20em}.landingImage #landingText1 {font-weight: 700;font-size: 3em}.landingImage #landingTagline .column_12{padding-top:3em}}
+@media only screen and (-webkit-min-device-pixel-ratio:2) and (max-width:320px),only screen and (min--moz-device-pixel-ratio:2) and (max-width:320px),only screen and (-moz-min-device-pixel-ratio:2) and (max-width:320px),only screen and (-o-min-device-pixel-ratio:2/1) and (max-width:320px),only screen and (min-device-pixel-ratio:2) and (max-width:320px),only screen and (min-resolution:192dpi) and (max-width:320px),only screen and (min-resolution:2dppx) and (max-width:320px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_290_2x.jpg");background-position:50% 0}.landingImage #backdrop .inner{padding-top:165.63%;display:block;height:0}.landingImage #landingForm {padding-top:20em}.landingImage #landingText1 {font-weight: 700;font-size: 3em}.landingImage #landingTagline .column_12{padding-top:3em}}
+@media only screen and (min-width:321px) and (max-width:480px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_480.jpg")}.landingImage #backdrop .inner{padding-top:106.448%;display:block;height:0}.landingImage #landingForm {padding-top:14em}.landingImage #landingText1 {font-weight: 700;font-size: 3em}}
+@media only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:321px) and (max-width:480px),only screen and (min--moz-device-pixel-ratio:2) and (min-width:321px) and (max-width:480px),only screen and (-moz-min-device-pixel-ratio:2) and (min-width:321px) and (max-width:480px),only screen and (-o-min-device-pixel-ratio:2/1) and (min-width:321px) and (max-width:480px),only screen and (min-device-pixel-ratio:2) and (min-width:321px) and (max-width:480px),only screen and (min-resolution:192dpi) and (min-width:321px) and (max-width:480px),only screen and (min-resolution:2dppx) and (min-width:321px) and (max-width:480px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_480_2x.jpg")}.landingImage #backdrop .inner{padding-top:106.448%;display:block;height:0}.landingImage #landingForm {padding-top:14em}.landingImage #landingText1 {font-weight: 700;font-size: 3em}}
+@media only screen and (min-width:481px) and (max-width:767px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_767.jpg")}.landingImage #backdrop .inner{padding-top:55.26%;display:block;height:0}.landingImage #landingText1 {font-size: 3em}.landingImage #landingForm {padding-top:9em}}
+@media only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:481px) and (max-width:767px),only screen and (min--moz-device-pixel-ratio:2) and (min-width:481px) and (max-width:767px),only screen and (-moz-min-device-pixel-ratio:2) and (min-width:481px) and (max-width:767px),only screen and (-o-min-device-pixel-ratio:2/1) and (min-width:481px) and (max-width:767px),only screen and (min-device-pixel-ratio:2) and (min-width:481px) and (max-width:767px),only screen and (min-resolution:192dpi) and (min-width:481px) and (max-width:767px),only screen and (min-resolution:2dppx) and (min-width:481px) and (max-width:767px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_767_2x.jpg")}.landingImage #backdrop .inner{padding-top:55.26%;display:block;height:0}.landingImage #landingText1 {font-size: 3em}.landingImage #landingForm {padding-top:9em}}
+@media only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:768px),only screen and (min--moz-device-pixel-ratio:2) and (min-width:768px),only screen and (-moz-min-device-pixel-ratio:2) and (min-width:768px),only screen and (-o-min-device-pixel-ratio:2/1) and (min-width:768px),only screen and (min-device-pixel-ratio:2) and (min-width:768px),only screen and (min-resolution:192dpi) and (min-width:768px),only screen and (min-resolution:2dppx) and (min-width:768px){.landingImage #backdrop{background-image:url("../img/cabletipster_landing_970_2x.jpg")}.landingImage #landingForm .offset_4{margin-left:33.33%}}
+
+@media only screen and (min-width:768px) and (max-width:959px){.landingImage #landingText1 {font-size: 3em}.landingImage #landingForm {padding-top:8em}}
+@media only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:768px) and (max-width:959px),only screen and (min--moz-device-pixel-ratio:2) and (min-width:768px) and (max-width:959px),only screen and (-moz-min-device-pixel-ratio:2) and (min-width:768px) and (max-width:959px),only screen and (-o-min-device-pixel-ratio:2/1) and (min-width:768px) and (max-width:959px),only screen and (min-device-pixel-ratio:2) and (min-width:768px) and (max-width:959px),only screen and (min-resolution:192dpi) and (min-width:768px) and (max-width:959px),only screen and (min-resolution:2dppx) and (min-width:768px) and (max-width:959px){.landingImage #landingText1 {font-size: 3em}.landingImage #landingForm {padding-top:8em}}

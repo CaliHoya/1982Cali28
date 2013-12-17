@@ -1,0 +1,35 @@
+<html ng-app="master">
+<head>
+  <title>FireTube</title>
+  <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+  <script type="text/javascript" src="js/firetube.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/main.css"/>
+  <link type="text/css" rel="stylesheet" href="css/main.icons.css"/>
+  <link type="text/css" rel="stylesheet" href="css/main.theme.css"/>
+</head>
+
+<body ng-controller="loginCtrl">
+ <header class="bck theme" style="padding-top:8px;padding-bottom:8px" ng-controller="loginCtrl">
+    <div class="row">
+        <div class="column_6">
+            <h2 class="text italic thin">Cable Tipster</h2>
+        </div>
+        <nav class="column_6 text right">
+          <div id="signinDiv">
+            <a href="#" class="button secondary" ng-show="user" ng-click="logout()" >Logout</a>                
+            <a href="#" class="button secondary" ng-hide="user" ng-click="login()">Login</a>
+          </div>
+        </nav>
+    </div>
+</header>
+
+<img id="video" src="img/markr.png"/>
+
+<div id="fb-root"></div>
+</body>
+
+</html>

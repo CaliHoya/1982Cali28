@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="mapOutputApp" ng-controller="MainCtrl" ng-init="step=4">
+<head>
+<link type="text/css" rel="stylesheet" href="css/main.css">
+<link type="text/css" rel="stylesheet" href="css/main.theme.css">
+<link type="text/css" rel="stylesheet" href="css/main.icons.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta charset="utf-8">
+<script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+<script src="js/geoFire.js"></script>
+<!-- <script src="js/modules/event/events.js"></script>
+<script type="text/javascript" src="js/ui-map.js"></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEaWA_R7CbaQU7GeFD80qoqT_eXy7t8M4&libraries=geometry&sensor=false&language=en"></script>
+<!-- <script src="js/markerclusterer.js"></script> -->
+<script src="js/infobox.js"></script>
+<title>Check out the tips in your neighborhood!</title>
+<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+mixpanel.init("05198e767a9d929bed8f12c0d68fb2e6");</script><!-- end Mixpanel -->
+<script src="js/mapOutputApp.js"></script>
+<script src="js/modules/mapOutputModule.js"></script>
+</head>
+  <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=171080336416759";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <header class="bck theme">
+          <div class="row">
+              <div class="column_6">
+                  <a href="index.html"><img src="img/CableTipsterLogo.png" /></a>
+                  <a href="#" class="button secondary show-phone on-right" style="vertical-align:top" ng-show="user" ng-click="logout()" >Logout</a>
+              </div>
+              <div class="on-right hide-phone" style="padding-top:4px">
+                  <a href="feedback.html" class="button success" ng-show="user" >Feedback</a>
+                  <a href="#" class="button secondary" ng-show="user" ng-click="logout()" >Logout</a>
+              </div>             
+          </div>
+    </header>
+    <h3 class="text book color theme padding">See How Your Rates Compare!</h3>
+<!--     <div ng-show="priceMedian">
+     <p>Median: {{priceMedian | currency}}</p>
+   </div> -->
+    <div class="row" id="mainDiv">
+      <form class="column_8 margin-bottom" style="height:36px">
+        <div style="padding-top:7px">
+          <div style="display:inline-block">
+            TV: <input type="checkbox" id="tvbox" ng-model="tvbox" ng-change="checkboxChecked()" /> &nbsp;&nbsp;
+            Internet: <input type="checkbox" id="internetbox" ng-model="internetbox" ng-change="checkboxChecked()" /> &nbsp;&nbsp;
+            Phone: <input type="checkbox" id="phonebox" ng-model="phonebox" ng-change="checkboxChecked()" /><br />
+          </div>
+          <div style="display:inline-block" ng-cloak>
+            &nbsp;&nbsp;<strong>Showing tips for <span style="color:">{{filterText}}</strong> 
+          </div>
+        </div>
+      </form>  
+      <div class="column_4 text right margin-bottom">
+        <div style="padding-top:7px">
+          <strong style="display:inline-block" class="padding-right">Want more tips & savings?</strong>
+          <a id="shareButton" style="display:inline-block" href="share.html"><div class="button success"><strong>Invite Neighbors</strong></div></a>
+        </div>
+      </div>
+    <div id="map_canvas" class="column_9 hide-phone" style="height:600px"></div>
+    <div id="sidebar" class="column_3">
+      <table ng-show="listView" ng-cloak>
+        <thead>
+          <tr>
+            <th>Tips Near You</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(key, tip) in tips | orderBy:'priceMonthly' | filter:customFilter" ng-click="zoomIn($event, tip.id, tip.priceMonthly, tip.providerName)">
+            <td><span><strong>{{tip.priceMonthly | currency}} - {{tip.providerName}}</strong></span><br><span ng-show="tip.numberTotalTV"># of TVs: {{tip.numberTotalTV}}</span><br ng-show="tip.numberTotalTV"><span ng-show="tip.internetSpeed">Internet Speed: {{tip.internetSpeed}} mbps</span><br ng-show="tip.internetSpeed"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table ng-hide="listView" ng-cloak>
+        <thead>
+          <tr class="text left">
+            <th>
+              <a href="#" class="button secondary tiny" ng-click="backToList()" ><span class="icon arrow-left"></span>List</a><span>&nbsp;&nbsp;Tip Details<span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <h5 class="text color dark"><strong>Monthly Price: </strong>{{tipSelected.priceMonthly | currency}}</h5>
+              <h5 class="text color dark"><strong>Provider: </strong>{{tipSelected.providerName}}</h5>
+              <br>
+              <p><small><strong>Contract Length: </strong>{{tipSelected.lengthContract}}</small></p>
+              <p><small ng-show="tipSelected.TVPackage"><strong>TV Package: </strong>{{tipSelected.TVPackage}}</small></p>
+              <p><small ng-show="tipSelected.numberTotalTV"><strong>TVs: </strong>{{tipSelected.numberTotalTV}} Total ({{tipSelected.numberHDTV}} HD, {{tipSelected.numberDVRTV}} DVR)</small></p>
+              <p ng-show="tipSelected.addOns"><small><strong>TV Add-ons: </strong></small>
+              <small ng-show="tipSelected.addOns" ng-repeat="addon in tipSelected.addOns">{{addon}}<span>, </span></small></p>
+              <p><small ng-show="tipSelected.internetPackage"><strong>Internet Package: </strong>{{tipSelected.internetPackage}}</small></p>
+              <p><small ng-show="tipSelected.internetSpeed"><strong>Internet Speed: </strong>{{tipSelected.internetSpeed}} mbps</small></p>
+              <p><small ng-show="tipSelected.phonePackage"><strong>Phone Package: </strong>{{tipSelected.phonePackage}}</small></p> 
+              <p><small ng-show="tipSelected.userComments"><strong>User Tip: </strong>{{tipSelected.userComments}}</small></p>
+              <br>
+            </td>
+          </tr>
+          <tr>
+            <td class="text center">
+              <p class="padding-bottom">Want a deal like this?</p>
+              <a id="negotiatorButton" href="cable-negotiator.html"><div class="button success"><strong>Negotiate & Save</strong></div></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    <footer class="bck light padding">
+        <div class="row text center">
+            <div class="column_4">
+                <p class="text bold big">Join the team!</p>
+                Talented engineers & designers should <a href="mailto:earl@cabletipster.com?subject=job" class="text underline color theme">get in touch</a>
+            </div>
+            <div class="column_4">
+                <p class="text bold big">Need some help?</p>
+                <a href="https://twitter.com/cabletipster" target="_blank" class="text underline color theme">Follow us</a> for quick answers or help 
+            </div>
+            <div class="column_4">
+              <small>Copyright © 2013, Cable Tipster.</small><br>
+              <a href="/about/terms.html"><small class="text">Terms of Use |</small></a>
+              <a  href="/about/privacy.html"><small class="text"> Privacy Policy</small></a>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html> 

@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "tips": {
+      // Users should be able to read any tips (would preventing users from seeing the 'submitted' key with userid mean that I need to individually give read access to every other key except submitted?)     
+      ".read": true,
+      "$tip": {
+        // Users should only be able to write to their own tips (although maybe this will prevent writing to tips altogether?
+        ".write": "root.child('/submitted').val() == (auth.provider+':'+auth.id)"
+      }
+    },
+  "users": {
+      "$userid": {
+      // Users should only be able to read or write to their own user data (is the way I've formatted userid causing issues?)
+        ".read": "$userid == (auth.provider+':'+auth.id)",        
+        ".write": "$userid == (auth.provider+':'+auth.id)"
+      }
+    }
+  }
+}

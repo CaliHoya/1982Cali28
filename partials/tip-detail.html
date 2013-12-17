@@ -1,0 +1,55 @@
+
+   <header class="bck theme padding-bottom">
+        <div class="row">
+            <div class="column_6">
+                <h2 class="text italic thin">Cable Tipster</h2>
+            </div>
+            <!--
+            <nav class="column_6 text right">
+                <a href="#" class="button secondary"><span class="icon user"></span>Login</a>
+                <a href="#" class="button"><span class="icon pencil"></span>Signup</a>
+            </nav>
+            -->
+        </div>
+    </header>
+    <div ng-controller="Tips">
+		<div class="row margin-bottom margin-top">
+			<div class="column_12" style="border: 2px solid #ecf0f1;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px">
+				<div class="column_2 text center padding-top padding-bottom">
+					<h3 class="text color dark"><strong>{{tip.priceMonthly | currency}}</strong></h3>
+					<p class="text color dark">per month</p>
+				</div>
+				<div class="column_5 padding-top padding-bottom">
+					<h5 class="text color dark"><strong>{{tip.providerName}}</strong></h5>
+					<p>New Contract or Renewal? {{tip.contractType}}</p>
+					<p>Contract Length: {{tip.lengthContract}}</p>
+					<p>Bundle Type: {{tip.servicesReceived}}</p>			
+				</div>
+				<div class="column_4 padding">
+					<p>Location: {{tip.city}}</p>
+					<p>Zip Code: {{tip.zipCode}}</p>
+					<div id="map-canvas">
+  					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row margin-bottom">
+			<div class="column_12 text center padding-top padding-bottom" style="border: 2px solid #ecf0f1;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px">
+				<p style="display:inline-block" class="padding-right">Let us negotiate for you!</p>
+				<a style="display:inline-block" href="cable-negotiator.html"><div class="button anchor"><strong>Try Cable Negotiator</strong></div></a>
+			</div>	
+		</div>
+		<div class="row margin-bottom" >
+			<div class="column_12 padding" style="border: 2px solid #ecf0f1;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px">
+				<h5><strong>Key Details:</strong></h5>
+				<br>
+				<p ng-show="tip.TVPackage">TV Package: {{tip.TVPackage}}</p>
+				<p ng-show="tip.addOns">TV Add-ons: {{tip.addOns}}</p>
+				<p ng-show="tip.numberTotalTV">TVs: {{tip.numberTotalTV}} Total ({{tip.numberHDTV}} HD, {{tip.numberDVRTV}} DVR)</p>
+				<p ng-show="tip.internetPackage">Internet Package: {{tip.internetPackage}}</p>
+				<p ng-show="tip.phonePackage">Phone Package: {{tip.phonePackage}}</p>									
+			</div>
+		</div>
+	</div>
+
+

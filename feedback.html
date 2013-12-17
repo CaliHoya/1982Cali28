@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="waitingListApp" ng-controller="LoginCtrl">
+<head>
+    <meta charset="utf-8" />
+    <title>Cable Negotiator</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.theme.css">
+    <!-- WIDGETS -->
+    <link rel="stylesheet" href="css/main.icons.css">
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43423432-1', 'cabletipster.com');
+  ga('send', 'pageview');
+
+    </script>
+<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+mixpanel.init("05198e767a9d929bed8f12c0d68fb2e6");</script><!-- end Mixpanel -->
+</head>
+<body class="text thin" ng-controller="WaitingCtrl">
+    <!-- ========================== HEADER ========================== -->
+    <header class="bck theme">
+          <div class="row">
+              <div class="column_6">
+                  <a href="index.html"><img src="img/CableTipsterLogo.png" /></a>
+                  <a href="#" class="button secondary show-phone on-right" style="vertical-align:top" ng-show="user" ng-click="logout()" >Logout</a>
+              </div>
+              <div class="on-right hide-phone" style="padding-top:4px">
+                  <a href="#" class="button secondary" ng-show="user" ng-click="logout()" >Logout</a>
+              </div>            
+          </div>
+    </header>
+    <section class="landing">
+        <div class="row">
+            <div class="column_10 offset_1 text center">
+                <h3 style="color:#3399CC">How can Cable Tipster better serve you?</h3>
+                <h5 class="margin-bottom">Do you want different info, new services, or something else entirely? Let us know!</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column_6 offset_3">
+                <form>
+                    <textarea id="feedback" ng-model="feedback" placeholder="Any and all feedback is highly appreciated" style="min-height:8em;border-color:#3399CC"></textarea>
+                </form>
+            </div>
+            <div ng-hide="feedbackSubmitted" class="column_4 offset_4 form subscribe">
+                    <button class="button large color success center" style="width:100%;border-radius:5px !important" ng-click="addFeedback();">Submit</button>
+            </div>
+            <div ng-show="feedbackSubmitted" class="column_4 offset_4 form subscribe">
+                    <p class="padding-left padding-bottom text color success" style="color:#32ccb2"><strong>Thank you - we really appreciate your feedback!</strong></p>
+                    <a href="map-output.html" class="button large anchor secondary center" style="width:100%;border-radius:5px !important" >Return to Map View</button></a>
+            </div>
+        </div>
+    </section>
+    <footer class="bck light padding">
+        <div class="row text center">
+            <div class="column_4">
+                <p class="text bold big">Join the team!</p>
+                Talented engineers & designers should <a href="mailto:earl@cabletipster.com?subject=job" class="text underline color theme">get in touch</a>
+            </div>
+            <div class="column_4">
+                <p class="text bold big">Need some help?</p>
+                <a href="https://twitter.com/cabletipster" target="_blank" class="text underline color theme">Follow us</a> for quick answers or help 
+            </div>
+            <div class="column_4">
+              <small>Copyright © 2013, Cable Tipster.</small><br>
+              <a href="/about/terms.html"><small class="text">Terms of Use |</small></a>
+              <a  href="/about/privacy.html"><small class="text"> Privacy Policy</small></a>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="http://static.firebase.com/v0/firebase.js"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+    <script type="text/javascript" src="js/waitingListApp.js"></script> 
+    <script type="text/javascript" src="js/modules/authModule.js"></script>
+    <script type="text/javascript" src="js/modules/waitingListModule.js"></script>
+</body>
+</html>

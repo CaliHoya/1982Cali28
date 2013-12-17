@@ -1,0 +1,68 @@
+       <header class="bck theme" style="padding-top:8px;padding-bottom:8px">
+          <div class="row">
+              <div class="column_6">
+                  <h2 class="text italic thin">Cable Tipster</h2>
+              </div>
+              <nav class="column_6 text right">
+                <div id="signinDiv">
+                  <a href="#" class="button secondary" ng-show="user" ng-click="logout()" >Logout</a>                
+<!--                   <a href="#" class="button secondary" ng-hide="user" ng-click="login()">Login</a> -->
+                </div>
+              </nav>
+          </div>
+      </header>
+    <div>
+
+    </div>
+    <div ng-controller="Tips">
+    	<div class="column_10 offset_1" ng-controller="MainCtrl">
+        <h3 class="text book color theme padding-top">Check out these great deals near you!</h3>  
+        <form class="padding-top text left">  
+          <ul style="display:inline;list-style:none">
+            <li style="float:left">
+              <p style="display:inline-block">Filtering by: </p>
+            </li>
+            <li style="float:left">
+              <select style="width:250px" ng-model="filterItem.plan" ng-options="item.name for item in filterOptions.plans"></select>
+            </li>
+            <li style="float:left">
+              <input style="width:250px;margin-left:10px" type="text" ng-model="query" placeholder="Search plan details">
+            </li>
+            <li style="float:left">
+              <input style="width:130px;margin-left:10px" type="text" ng-model="zipQuery" placeholder="Filter by Zip">
+            </li>
+          </ul>
+        </form>
+    		<table style="table-layout:fixed">
+          <colgroup>
+             <col span="1" style="width: 20%;">
+             <col span="1" style="width: 60%;">
+             <col span="1" style="width: 20%;">
+          </colgroup>
+    			<thead>
+            <tr>
+              <th>Price</th>
+              <th colspan="2">Package Details</th>
+            </tr>
+    			</thead>
+    			<tbody>
+<!--             <tr>
+              <td></td>
+              <td colspan="2">
+                <form>  
+
+                </form>
+              </td>
+            </tr> -->
+    				<tr ng-repeat="(key, tip) in tips | toArray | orderBy:'priceMonthly' | packageFilter:query | zipFilter:zipQuery | filter:customFilter">
+              <td style="text-align:center"><h3>{{tip.priceMonthly | currency}}</h3></td>
+    					<td style="vertical-align:top"><span><strong>{{tip.providerName}}</strong></span><span ng-show="tip.zipCode">Location Zip Code: {{tip.zipCode}}</span><span ng-show="tip.TVPackage">TV Package: {{tip.TVPackage}}</span><span ng-show="tip.internetPackage">Internet Speed: {{tip.internetSpeed}} mbps</span><span ng-show="tip.addOns">Add-ons: {{tip.addOns}}</span><span ng-show="tip.numberTotalTV">{{tip.numberTotalTV}} TVs</span></td>
+              <td>
+                <a href="#/tips/{{tip.id}}" class="button success" style="width:150px">See Details!</a>
+              </td>
+    				</tr>
+    			</tbody>
+    		</table>
+        </div>  
+      </div>
+

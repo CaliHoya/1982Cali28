@@ -1,0 +1,35 @@
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNLpNbutqsD2bVKApEjqna3ioSs97OIE&sensor=false">
+    </script>
+    <script type="text/javascript">	
+    function getLatLng(location){
+	    var geocoder = new google.maps.Geocoder();
+	    var latlng = new Array(2);
+
+	    // get Lat, Lang
+	    geocoder.geocode({'address': location}, function(results, status){
+	         if (status == google.maps.GeocoderStatus.OK) {
+	            	latlng[0] = results[0].geometry.location.lat();
+	            	latlng[1] = results[0].geometry.location.lng();
+	            	console.log(latlng[0]);
+	            	function initialize() {
+			        var mapOptions = {
+			          center: new google.maps.LatLng(latlng[0], latlng[1]),
+			          zoom: 8,
+			          mapTypeId: google.maps.MapTypeId.ROADMAP
+			        };
+			        var map = new google.maps.Map(document.getElementById("map-canvas"),
+			            mapOptions);
+			      	}
+			      	initialize();   
+	        } else {
+	              console.log( "Unable to find address: " + status );
+	          }
+	       });
+	    }
+
+	    setTimeout(function(){ getLatLng('4951 E. Crescent Dr., Anaheim, CA'); }, 1000);
+    </script>
+
+  	<div id="map-canvas">
+  	</div>
